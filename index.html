@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sanity Check — Arclight Industrial v2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f7f8fa;color:#1a1a1a;line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;margin-bottom:.5rem}
+header h1{font-size:1.5rem;font-weight:700}
+header p{font-size:.82rem;color:#888;margin-top:.2rem}
+
+/* SUMMARY BANNER */
+.banner{background:#fff;border-radius:10px;padding:1.5rem 2rem;margin-bottom:1.75rem;box-shadow:0 1px 4px rgba(0,0,0,.06);text-align:center}
+.verdict{font-size:1.1rem;font-weight:600;margin-bottom:.25rem}
+.verdict-sub{font-size:.82rem;color:#666}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.25rem}
+.score{border-radius:8px;padding:.75rem .6rem;text-align:center}
+.score-dot{width:14px;height:14px;border-radius:50%;display:inline-block;margin-bottom:.3rem}
+.dot-red{background:#E74C3C}
+.dot-amber{background:#F39C12}
+.dot-green{background:#27AE60}
+.dot-grey{background:#BDC3C7}
+.score-label{font-size:.78rem;font-weight:600;display:block}
+.score-sub{font-size:.72rem;color:#777;display:block;margin-top:.15rem}
+
+/* 3-COL GRID */
+.findings-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:1.75rem}
+@media(max-width:820px){.findings-row{grid-template-columns:1fr}}
+.col{background:#fff;border-radius:8px;border-top:3px solid #ccc;padding:1rem 1.1rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.col-arch{border-top-color:#4A4A4A}
+.col-cons{border-top-color:#5B9BD5}
+.col-biz{border-top-color:#E8A838}
+.col h2{font-size:.88rem;font-weight:700;margin-bottom:.65rem}
+.finding{margin-bottom:.7rem}
+.pill{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:9px;margin-right:4px;vertical-align:middle}
+.pf{background:#FDE8E4;color:#C0392B}
+.pw{background:#FEF3E2;color:#B7791F}
+.pc{background:#FDE8E4;color:#C0392B;border:1px solid #E6B8B0}
+.pp{background:#FEF3E2;color:#B7791F;border:1px solid #E6D5A8}
+.fh{font-size:.82rem;font-weight:500}
+details{margin-top:.25rem}
+details summary{font-size:.72rem;color:#999;cursor:pointer}
+details summary:hover{color:#555}
+.db{font-size:.78rem;color:#666;margin-top:.3rem;padding-left:.6rem;border-left:2px solid #eee}
+.db p{margin-bottom:.3rem}
+
+/* QUESTIONS */
+.q-section{background:#fff;border-radius:8px;padding:1.25rem 1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:1.5rem}
+.q-section h2{font-size:.95rem;font-weight:700;margin-bottom:.85rem}
+.q-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:.75rem}
+.qc{background:#FAFCFA;border:1px solid #E2EDE2;border-radius:6px;padding:.75rem .85rem}
+.qr{font-size:.65rem;font-weight:700;color:#fff;background:#666;padding:1px 6px;border-radius:7px;float:right}
+.qt{font-size:.84rem;font-weight:500;margin-bottom:.2rem}
+.disclaimer{text-align:center;font-size:.75rem;color:#aaa;margin-top:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Sanity Check — Arclight Industrial v2</h1>
+<p>Adversarial review &middot; 29 Sep 2026</p>
+</header>
+<!-- BANNER -->
+<div class="banner">
+<div class="verdict">Ready with caveats</div>
+<div class="verdict-sub">Strong deterministic architecture. Resolve ownership, escalation paths, and the €2m baseline before presenting.</div>
+<div class="scores">
+<div class="score" style="background:#FFF8F0">
+<span class="score-dot dot-amber"></span>
+<span class="score-label">Architecture</span>
+<span class="score-sub">2 flags — gates need escalation &amp; adoption plan</span>
+</div>
+<div class="score" style="background:#F0F6FF">
+<span class="score-dot dot-amber"></span>
+<span class="score-label">Consistency</span>
+<span class="score-sub">2 flags — autonomy labels &amp; SLA definition</span>
+</div>
+<div class="score" style="background:#FFF5F5">
+<span class="score-dot dot-red"></span>
+<span class="score-label">Business Grounding</span>
+<span class="score-sub">Conflicting — €2m claim vs. no baseline</span>
+</div>
+<div class="score" style="background:#F5FAF5">
+<span class="score-dot dot-grey"></span>
+<span class="score-label">Validation Qs</span>
+<span class="score-sub">5 questions for the customer</span>
+</div>
+</div>
+</div>
+<!-- 3-COL FINDINGS -->
+<div class="findings-row">
+
+<div class="col col-arch">
+<h2>Architecture Soundness</h2>
+<div class="finding">
+<span class="pill pf">flag</span>
+<span class="fh">No change management for the four new approval steps</span>
+<details><summary>Detail</summary><div class="db">
+<p>The shortage worklist introduces four sequential approval steps that change how Buyers, Logistics, PPCP, and Planners work daily. The design doesn't address how these teams will be onboarded or how adoption will be measured.</p>
+</div></details>
+</div>
+<div class="finding">
+<span class="pill pf">flag</span>
+<span class="fh">No timeout or escalation if an approval step stalls</span>
+<details><summary>Detail</summary><div class="db">
+<p>All four approval steps are sequential — if one stalls, the entire shortage case blocks. No turnaround target, escalation path, or fallback is defined. The health dashboard tracks "SLA breaches" but no SLA exists to breach.</p>
+</div></details>
+</div>
+<div class="finding">
+<span class="pill pw">worth-checking</span>
+<span class="fh">No plan for when SAP data extraction is late or fails</span>
+<details><summary>Detail</summary><div class="db">
+<p>Everything runs on hourly SAP data. If extraction misses the 15-minute window before a re-plan slot, it's unclear whether the worklist warns users, freezes cases, or silently serves stale data.</p>
+</div></details>
+</div>
+</div>
+
+<div class="col col-cons">
+<h2>Internal Consistency</h2>
+<div class="finding">
+<span class="pill pf">flag</span>
+<span class="fh">Phase 1 is called "human-triggered" but most components run autonomously</span>
+<details><summary>Detail</summary><div class="db">
+<p>The design summary says Phase 1 is human-triggered (3A), but shortage detection, queue ranking, re-plan computation, notifications, and outcome recording all run without human input (3C). Only the SAP transaction shortcut is truly human-triggered.</p>
+</div></details>
+</div>
+<div class="finding">
+<span class="pill pf">flag</span>
+<span class="fh">Health dashboard tracks "SLA breaches" — but no SLA is defined</span>
+<details><summary>Detail</summary><div class="db">
+<p>The monitoring dashboard references service-level targets that don't appear anywhere else in the design — not in the approval steps, not in the worklist, not in the operational agreement.</p>
+</div></details>
+</div>
+<div class="finding">
+<span class="pill pw">worth-checking</span>
+<span class="fh">"Named approver at every step" — only the final planning step names one</span>
+<details><summary>Detail</summary><div class="db">
+<p>The operating agreement promises a named approver at each step, but only the re-plan date approval explicitly requires one. The other three steps assign roles (Buyer, Logistics, PPCP) without requiring a specific named individual.</p>
+</div></details>
+</div>
+</div>
+
+<div class="col col-biz">
+<h2>Business Grounding</h2>
+<div class="finding">
+<span class="pill pf">flag</span> <span class="pill pc">conflicting</span>
+<span class="fh">€2m expedite-cost savings cited — but no baseline measurement exists</span>
+<details><summary>Detail</summary><div class="db">
+<p>The value case anchors on ~€2m/yr in avoidable expedite spend, but the customer has never measured this. The baseline is planned as future work. If the validated number is materially lower, the investment case weakens.</p>
+</div></details>
+</div>
+<div class="finding">
+<span class="pill pf">flag</span> <span class="pill pp">partially-supported</span>
+<span class="fh">Hourly SAP extraction assumed — but IT governance may block it</span>
+<details><summary>Detail</summary><div class="db">
+<p>Shifting from nightly batch to hourly delta needs IT approval. Given that even a middleware request takes 6 weeks, there's no reason to assume extraction changes face a lighter path. If this stays nightly, the entire freshness improvement disappears.</p>
+</div></details>
+</div>
+<div class="finding">
+<span class="pill pw">worth-checking</span> <span class="pill pp">partially-supported</span>
+<span class="fh">System maintenance team named as owner — but may not exist yet</span>
+<details><summary>Detail</summary><div class="db">
+<p>The design assigns baseline computation, weekly monitoring, and post-handover ownership to a team whose capacity is flagged as unconfirmed in the risks table. Without this team, the monitoring loop breaks and the system degrades silently.</p>
+</div></details>
+</div>
+</div>
+
+</div>
+<!-- CUSTOMER QUESTIONS -->
+<div class="q-section">
+<h2>Worth Asking the Customer</h2>
+<div class="q-grid">
+
+<div class="qc">
+<span class="qr">IT Security</span>
+<div class="qt">The shortage worklist opens SAP transactions pre-filled with PO numbers and dates. Does your security team treat that as an integration channel that needs the same middleware approval as a direct system write?</div>
+<details><summary>Why this matters</summary><div class="db">
+<p>If IT Security classifies the pre-filled SAP shortcut the same way as a write-back, the initial deployment can only send notifications — no direct action path for planners until middleware is approved.</p>
+</div></details>
+</div>
+
+<div class="qc">
+<span class="qr">Finance</span>
+<div class="qt">The expedite-cost savings target that justifies this project is ~€2m/yr — but that number hasn't been measured yet. Where did it come from, and does the business case hold if the validated baseline is significantly lower?</div>
+<details><summary>Why this matters</summary><div class="db">
+<p>The entire value story depends on this figure. If Finance signs off on a lower validated number, the scope or approach may need to change.</p>
+</div></details>
+</div>
+
+<div class="qc">
+<span class="qr">Head of Planning</span>
+<div class="qt">The new approval step for re-plan dates adds a formal gate your team doesn't have today. How many of these do you expect per week, how fast should they turn around, and what happens when the approver is unavailable?</div>
+<details><summary>Why this matters</summary><div class="db">
+<p>Today re-plan decisions happen informally. Adding a formal gate improves traceability but could slow things down if volume, SLA, and escalation aren't agreed upfront.</p>
+</div></details>
+</div>
+
+<div class="qc">
+<span class="qr">Director of Ops</span>
+<div class="qt">The team responsible for maintaining the system after go-live — computing the savings baseline, reviewing data quality weekly, owning the solution long-term — is that an existing team, or does it need to be created?</div>
+<details><summary>Why this matters</summary><div class="db">
+<p>If this team doesn't exist by go-live, the savings baseline never gets computed, data quality issues go undetected, and nobody owns the system after handover.</p>
+</div></details>
+</div>
+
+<div class="qc">
+<span class="qr">Sponsor</span>
+<div class="qt">Before SAP write-back and richer data sources come online, the system delivers a shortage worklist with pre-filled SAP shortcuts and notifications. Is that initial scope valuable enough on its own to justify deployment?</div>
+<details><summary>Why this matters</summary><div class="db">
+<p>The higher-autonomy features (automated SAP updates, MES data, copilot assistance) are all later phases. The sponsor should confirm Phase 1 alone moves the needle.</p>
+</div></details>
+</div>
+
+</div>
+</div>
+
+<p class="disclaimer">These are prompts for your judgment, not fixes — take or leave any of them.</p>
+</div>
+</body>
+</html>
